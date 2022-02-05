@@ -96,11 +96,10 @@ My Ads
                                     <h2>Baby Willow</h2>
                                 </a> 
                                 <div class="section__adsItemColumn">
-                                    <div class="section__adsItemRow" data-ad-verify="not_verified" data-ad-type="ad_verify">
+                                    <div class="section__adsItemRow" data-ad-verify="unverified">
                                         <p class="section__adsItemRowText">
-                                            Status: <span class="section__adsItemRowState">Not verified</span>
+                                            Status: <span class="section__adsItemRowState">Unverified</span>
                                         </p>
-                                        <button class="section__adsItemRowBtn">Verify</button>
                                     </div>
                                     <div class="section__adsItemRow" data-ad-state="on" data-ad-type="ad_state">
                                         <p class="section__adsItemRowText">
@@ -177,7 +176,7 @@ My Ads
                                     <h2>Sandy Candy</h2>
                                 </a>                                
                                 <div class="section__adsItemColumn">
-                                    <div class="section__adsItemRow" data-ad-verify="verified" data-ad-type="ad_verify">
+                                    <div class="section__adsItemRow" data-ad-verify="verified">
                                         <p class="section__adsItemRowText">
                                             Status: <span class="section__adsItemRowState">Verified</span>
                                         </p>
@@ -258,11 +257,10 @@ My Ads
                                     <h2>Sandy Candy</h2>
                                 </a>                                
                                 <div class="section__adsItemColumn">
-                                    <div class="section__adsItemRow" data-ad-verify="under_review" data-ad-type="ad_verify">
+                                    <div class="section__adsItemRow" data-ad-verify="unverified">
                                         <p class="section__adsItemRowText">
-                                            Status: <span class="section__adsItemRowState">Under review</span>
+                                            Status: <span class="section__adsItemRowState">Unverified</span>
                                         </p>
-                                        <button class="section__adsItemRowBtn"></button>
                                     </div>
                                     <div class="section__adsItemRow" data-ad-state="off" data-ad-type="ad_state">
                                         <p class="section__adsItemRowText">
@@ -394,6 +392,8 @@ My Ads
     const serverAdPlan = "handler.php"; // Адрес обработчика тарифного плана
     const serverAdTopup = "handler.php"; // Адрес обработчика пополнения
     const serverAdDelete = "handler.php"; // Адрес обработчика удаления
+
+    const uploadAdImage = "handler-photo.php"; // Адрес обработчика загруженных фотографий
 
 
     const adPhones = new AdManager({

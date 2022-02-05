@@ -431,3 +431,126 @@ class AdManager {
         }
     }
 }
+
+function verifyAdPhoto(param) {
+    const photoField = `
+        <div class="section__adsItem-imageUpload" data-img-id="">
+            <div class="section__adsItem-imageUpload_title">Please, verify this profile</div>
+            <div class="section__adsItem-imageUpload_info">To verify your profile you have to upload a photo where you hold a piece of paper with your ID number (your ID <span class="section__adsItem-imageUpload_info-id">20267</span>) written on it. <a href="#">See the example</a></div>
+            <div class="section__adsItem-imageUpload_buttons">
+                <div class="section__adsItem-imageUpload_browserField">
+                    <input type="file" id="browseAdImage" accept=".jpg,.jpeg,.png">
+                    <button class="section__adsItem-imageUpload_button section__adsItem-imageUpload_browse">Browse</button>
+                    <div class="section__adsItem-imageUpload_browseName"></div>
+                </div>
+                <button class="section__adsItem-imageUpload_button section__adsItem-imageUpload_upload" style="display: none;" disabled="true">Upload</button>
+            </div>
+            <div class="section__adsItem-imageUpload_preview"></div>
+        </div>    
+    `;
+    const block = document.querySelector(".section__detailsBlock");
+    let adID = "";
+
+
+    const allVerifyAds = document.querySelectorAll("[data-ad-verify='unverified']");
+    for (let index = 0; index < allVerifyAds.length; index++) {
+        const element = allVerifyAds[index];
+        const button = `<button class="section__adsItemRowBtn">Verify</button>`;
+        element.insertAdjacentHTML(`beforeEnd`, button);
+    }
+
+    let file = [];
+
+    block.addEventListener("click", actionHandler);    
+
+    function actionHandler (event) {
+        if (event.target.classList.contains("section__adsItemRowBtn")) {
+            showBrowseField(event);
+        }
+        if (event.target.classList.contains("section__adsItem-imageUpload_browse")) {
+            browserImage();
+        }
+        if (event.target.classList.contains("section__adsItem-imageUpload_upload")) {
+            uploadImage();
+        }
+    }
+    function showBrowseField (event) {
+        const parent = event.target.closest(".section__bookmarkedItem");
+        adID = parent.id;
+        if (!document.querySelector(".section__adsItem-imageUpload")) {
+            parent.insertAdjacentHTML(`afterEnd`, photoField);
+        }
+        document.querySelector(".section__adsItem-imageUpload").setAttribute("data-img-id", adID);
+    }
+    function changeHandler (event) {    
+        if (!event.target.files.length) {
+          return;
+        }
+        file = Array.from(event.target.files)[0];
+        if (!file.type.match("image")) {
+            return; 
+        }
+        changeStateButtons(false);
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+            document.querySelector(".section__adsItem-imageUpload_preview").innerHTML = `
+            <div class="section__adsItem-imageUpload_img" data-img-name="${file.name}">
+                <img src="${event.target.result}" alt="${file.name}">
+            </div>
+            `;
+          }
+          document.getElementById("browseAdImage").value = "";
+          reader.readAsDataURL(file);
+          document.querySelector(".section__adsItem-imageUpload_browseName").innerText = file.name;
+    }
+
+    function browserImage () {
+        const inputField = document.getElementById("browseAdImage");
+        inputField.addEventListener("change", changeHandler);
+        inputField.click();
+    }
+
+    function uploadImage (id) {
+        const formData = new FormData();
+        const headers = new Headers();
+        console.log(adID);
+        headers.append('X-CSRFToken', csrf_token);
+        formData.append("id", adID);
+        formData.append("image", file);        
+        sendPhoto(uploadAdImage, headers, formData)
+        .then(data => {        
+            if (!data.error) {
+                changeStateButtons();
+                document.querySelector(".section__adsItem-imageUpload").remove();
+                const currentAd = document.getElementById(adID);
+                const currentRow = currentAd.querySelector("[data-ad-verify]");
+                currentRow.setAttribute("data-ad-verify", "under_review");
+                currentRow.querySelector(".section__adsItemRowState").innerText = "Under review";
+                const button = currentRow.querySelector(".section__adsItemRowBtn");
+                button.remove();
+            } else {
+                alert(data.error + " Please refresh the page");
+            }        
+        });
+    }
+    async function sendPhoto(url = '', headers, data) {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: data,
+        });
+        return await response.json();
+    }
+    function changeStateButtons (state = true) {
+        const uploadButton = document.querySelector(".section__adsItem-imageUpload_upload");
+        if (state) {
+            uploadButton.style.display = "none";
+            uploadButton.setAttribute("disabled", true);
+        } else {
+            uploadButton.style.display = "inline-flex";
+            uploadButton.removeAttribute("disabled");
+        }
+    }
+}
+verifyAdPhoto();
