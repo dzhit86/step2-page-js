@@ -96,6 +96,12 @@ My Ads
                                     <h2>Baby Willow</h2>
                                 </a> 
                                 <div class="section__adsItemColumn">
+                                    <div class="section__adsItemRow" data-ad-verify="not_verified" data-ad-type="ad_verify">
+                                        <p class="section__adsItemRowText">
+                                            Status: <span class="section__adsItemRowState">Not verified</span>
+                                        </p>
+                                        <button class="section__adsItemRowBtn">Verify</button>
+                                    </div>
                                     <div class="section__adsItemRow" data-ad-state="on" data-ad-type="ad_state">
                                         <p class="section__adsItemRowText">
                                             Phone number: <span class="section__adsItemRowState"></span>
@@ -171,6 +177,12 @@ My Ads
                                     <h2>Sandy Candy</h2>
                                 </a>                                
                                 <div class="section__adsItemColumn">
+                                    <div class="section__adsItemRow" data-ad-verify="verified" data-ad-type="ad_verify">
+                                        <p class="section__adsItemRowText">
+                                            Status: <span class="section__adsItemRowState">Verified</span>
+                                        </p>
+                                        <button class="section__adsItemRowBtn"></button>
+                                    </div>
                                     <div class="section__adsItemRow" data-ad-state="off" data-ad-type="ad_state">
                                         <p class="section__adsItemRowText">
                                             Phone number: <span class="section__adsItemRowState"></span>
@@ -246,6 +258,12 @@ My Ads
                                     <h2>Sandy Candy</h2>
                                 </a>                                
                                 <div class="section__adsItemColumn">
+                                    <div class="section__adsItemRow" data-ad-verify="under_review" data-ad-type="ad_verify">
+                                        <p class="section__adsItemRowText">
+                                            Status: <span class="section__adsItemRowState">Under review</span>
+                                        </p>
+                                        <button class="section__adsItemRowBtn"></button>
+                                    </div>
                                     <div class="section__adsItemRow" data-ad-state="off" data-ad-type="ad_state">
                                         <p class="section__adsItemRowText">
                                             Phone number: <span class="section__adsItemRowState"></span>
@@ -282,8 +300,31 @@ My Ads
                         </div>
                     </article>  
                 </div>
-            <div></div>
-            <div></div>            
+                
+                <div class="section__howVerify" id="howVerify">
+                    <div class="section__howVerify-title">How to verify your profile</div>
+                    <div class="section__howVerify-info">
+                        <ul>
+                            <li>To verify your profile you have to upload a photo where you hold a piece of paper with your ID number (your ID 20267) written on it.</li>
+                            <li>Add a clear and accurate photo(s) to increase the number of responses you receive.</li>
+                            <li>Use only real photos of yourself. Photos of other people or group photos are NOT allowed.</li>
+                            <li>Upload only high quality photos</li>
+                            <li>You may add up to 12 pictures. Max file size 4MB.</li>
+                            <li>Add a clear and accurate photo(s) to increase the number of responses you receive.</li>
+                            <li>Use only real photos of yourself. Photos of other people or group photos are NOT allowed.</li>
+                        </ul>
+                        <p>These is not extensive list of rules, please read the Terms and Conditions and Ads Policy pages</p>
+                    </div>
+                    <div class="section__howVerify-gallery">
+                        <div class="section__howVerify-subTitle">Examples of verification photos:</div>
+                        <div class="section__howVerify-gallery_wrap">
+                            <div class="section__howVerify-gallery_item"><img src="static/img/455476439.jpg" alt=""></div>
+                            <div class="section__howVerify-gallery_item"><img src="static/img/455476439.jpg" alt=""></div>
+                            <div class="section__howVerify-gallery_item"><img src="static/img/455476439.jpg" alt=""></div>
+                            <div class="section__howVerify-gallery_item"><img src="static/img/455476439.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -346,13 +387,13 @@ My Ads
     const infoAdTopup = {
         amount : [10,25,50,100],
     }; // Json с информацией о суммах пополнения
-    const csrf_token = ""; // X-CSRFToken
+    const csrf_token = "123"; // X-CSRFToken
 
-    const serverAdPhone = ""; // Адрес обработчика телефона
-    const serverAdPromo = ""; // Адрес обработчика продвижения
-    const serverAdPlan = ""; // Адрес обработчика тарифного плана
-    const serverAdTopup = ""; // Адрес обработчика пополнения
-    const serverAdDelete = ""; // Адрес обработчика удаления
+    const serverAdPhone = "handler.php"; // Адрес обработчика телефона
+    const serverAdPromo = "handler.php"; // Адрес обработчика продвижения
+    const serverAdPlan = "handler.php"; // Адрес обработчика тарифного плана
+    const serverAdTopup = "handler.php"; // Адрес обработчика пополнения
+    const serverAdDelete = "handler.php"; // Адрес обработчика удаления
 
 
     const adPhones = new AdManager({
