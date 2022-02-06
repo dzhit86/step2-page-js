@@ -436,7 +436,7 @@ function verifyAdPhoto(param) {
     const photoField = `
         <div class="section__adsItem-imageUpload" data-img-id="">
             <div class="section__adsItem-imageUpload_title">Please, verify this profile</div>
-            <div class="section__adsItem-imageUpload_info">To verify your profile you have to upload a photo where you hold a piece of paper with your ID number (your ID <span class="section__adsItem-imageUpload_info-id">20267</span>) written on it. <a href="#">See the example</a></div>
+            <div class="section__adsItem-imageUpload_info">To verify your profile you have to upload a photo where you hold a piece of paper with your ID number (your ID <span class="section__adsItem-imageUpload_info-id">20267</span>) written on it. <a href="#howVerify">See the example</a></div>
             <div class="section__adsItem-imageUpload_buttons">
                 <div class="section__adsItem-imageUpload_browserField">
                     <input type="file" id="browseAdImage" accept=".jpg,.jpeg,.png">
