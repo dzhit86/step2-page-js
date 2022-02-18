@@ -474,6 +474,9 @@ function verifyAdPhoto(param) {
         }
     }
     function showBrowseField (event) {
+        if (document.querySelector(".section__adsItem-imageUpload")) {
+            document.querySelector(".section__adsItem-imageUpload").remove();
+        }
         const parent = event.target.closest(".section__bookmarkedItem");
         adID = parent.id;
         if (!document.querySelector(".section__adsItem-imageUpload")) {
