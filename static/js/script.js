@@ -451,7 +451,6 @@ function verifyAdPhoto(param) {
     const block = document.querySelector(".section__detailsBlock");
     let adID = "";
 
-
     const allVerifyAds = document.querySelectorAll("[data-ad-verify='unverified']");
     for (let index = 0; index < allVerifyAds.length; index++) {
         const element = allVerifyAds[index];
@@ -464,7 +463,7 @@ function verifyAdPhoto(param) {
     block.addEventListener("click", actionHandler);    
 
     function actionHandler (event) {
-        if (event.target.classList.contains("section__adsItemRowBtn")) {
+        if (event.target.classList.contains("section__adsItemRowBtn") && event.target.closest("[data-ad-verify]")) {
             showBrowseField(event);
         }
         if (event.target.classList.contains("section__adsItem-imageUpload_browse")) {
